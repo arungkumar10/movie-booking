@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+.card-header{
+    background-color: rgb(57 68 110);
+    color: white;
+}
+
+.text-color{
+    color: rgb(57 68 110);
+}
+
+.btn-primary{
+    background-color: white!Important;
+    border: 1px solid rgb(57 68 110);
+    border-radius: 8px;
+    padding: 5px 13px;
+    color: rgb(57 68 110);
+}
+
+.btn-primary:hover{
+    background-color: rgb(57 68 110)!Important;
+}
+

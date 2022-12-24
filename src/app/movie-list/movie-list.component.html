@@ -1,1 +1,103 @@
-<p>movie-list works!</p>
+<main class="p-4">
+    <h4 class="text-color">Movie Tickets Booking</h4>
+    <div class="row mt-4">
+        <div *ngFor="let theatre of getAllTheaterList?.theatre;let i = index;" class="col-sm-4 mb-4">
+            <div class="card card-height">
+                <div class="card-header">
+                    <span>{{theatre.theatre_name}}</span> <span class="float-end"><img class="me-1" src="assets/images/rating-icon.png">{{theatre.customer_rating}}</span>                    
+                </div>
+                <div class="card-body">
+                    <small class="theatre-address">#{{theatre.address}}</small>
+                    <!-- <div class="row m-4">
+                        <div class="col-4">
+                            Movie Name
+                        </div>
+                        <div class="col-4">
+                            Show Time
+                        </div>
+                        <div class="col-4">
+                            Action
+                        </div>
+                    </div> -->
+                    <hr>
+                    <div class="row mb-2 align-items-center p-0 m-0">
+                        <div class="col-5 text-color">
+                            <strong>{{theatre.show1_movie}}</strong>
+                        </div>
+                        <div class="col-3 text-color">
+                            <strong>{{theatre.show1_time}}</strong>
+                        </div>
+                        <div class="col-4">
+                            <button class="btn btn-primary">Book Now</button>
+                        </div>
+                    </div>
+                    <div class="row mb-2 align-items-center p-0 m-0">
+                        <div class="col-5 text-color">
+                            <strong>{{theatre.show2_movie}}</strong>
+                        </div>
+                        <div class="col-3 text-color">
+                            {{theatre.show2_time}}
+                        </div>
+                        <div class="col-4">
+                            <button class="btn btn-primary">Book Now</button>
+                        </div>
+                    </div>
+                    <div class="row mb-2 align-items-center p-0 m-0">
+                        <div class="col-5 text-color">
+                            {{theatre.show3_movie}}
+                        </div>
+                        <div class="col-3 text-color">
+                            {{theatre.show3_time}}
+                        </div>
+                        <div class="col-4">
+                            <button class="btn btn-primary">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+              </div>
+        </div>
+    </div>
+
+      <!-- <div *ngFor="let theatre of getAllTheaterList?.theatre;let i = index;">
+        <button class="accordion" (click)="toggleAccordian($event, i)">{{theatre.theatre_name}} </button>
+        <div class="panel" hide="!theatre.isActive">
+                <div class="row m-4">
+                    <div class="col-4">
+                        {{theatre.show1_movie}}
+                    </div>
+                    <div class="col-4">
+                        {{theatre.show1_time}}
+                    </div>
+                    <div class="col-4">
+                        <button class="btn btn-primary">Book Now</button>
+                    </div>
+                </div>
+
+                <div class="row m-4">
+                    <div class="col-4">
+                        {{theatre.show2_movie}}
+                    </div>
+                    <div class="col-4">
+                        {{theatre.show2_time}}
+                    </div>
+                    <div class="col-4">
+                        <button class="btn btn-primary">Book Now</button>
+                    </div>
+                </div>
+
+                <div class="row m-4">
+                    <div class="col-4">
+                        {{theatre.show3_movie}}
+                    </div>
+                    <div class="col-4">
+                        {{theatre.show3_time}}
+                    </div>
+                    <div class="col-4">
+                        <button class="btn btn-primary">Book Now</button>
+                    </div>
+                </div> -->
+                    
+        <!-- </div> -->
+      <!-- </div> -->
+     
+</main>
