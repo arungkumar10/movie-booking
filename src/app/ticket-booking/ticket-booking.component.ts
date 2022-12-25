@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { BookingService } from '../services/booking.service';
 
 @Component({
@@ -10,8 +10,17 @@ export class TicketBookingComponent {
   bookedSeats: any = [];
   userMailId: string = 'arungkumar.10@gmail.com';
 
+  @Input() movieDetails:any;
+  @Input() theatre:any;
+
+  
   constructor(private bookingService:BookingService){
 
+  }
+
+  ngOnInit(){
+    this.movieDetails
+      debugger
   }
 
   createBookingSeats(movieDetails:any){

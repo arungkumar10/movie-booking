@@ -1,22 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
+$color: rgb(57 68 110);
+$font-size: 13px;
+
 .card-header{
-    background-color: rgb(57 68 110);
+    background-color: $color;
     color: white;
 }
 
 .text-color{
-    color: rgb(57 68 110);
+    color: $color;
 }
 
 .btn-primary{
     background-color: white!Important;
-    border: 1px solid rgb(57 68 110);
+    border: 1px solid $color;
     border-radius: 8px;
     padding: 5px 13px;
-    color: rgb(57 68 110);
+    color: $color;
+    font-size: $font-size;
 }
 
 .btn-primary:hover{
     background-color: rgb(57 68 110)!Important;
 }
 
+.movie{
+    font-size: $font-size;
+}
+
+.btn-check:focus+.btn-primary, .btn-primary:focus{
+    color: $color;
+}

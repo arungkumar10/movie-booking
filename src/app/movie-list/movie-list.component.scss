@@ -38,8 +38,18 @@
 .theatre-address{
     font-size: smaller;
     color: darkgrey;
+    min-height: 41px;
 }
 
 .card-height{
-    min-height: 150px;
+    min-height: 263px;
 }
+
+.card-body{
+    min-height: 221px;
+}
+
+.rating{
+    font-size: 13px;
+}
+

@@ -8,6 +8,7 @@ import { TicketBookingComponent } from './ticket-booking/ticket-booking.componen
 import { HttpClientModule } from '@angular/common/http';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    AccordionModule.forRoot()
+    AccordionModule.forRoot(),
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

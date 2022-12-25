@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BookingService } from '../services/booking.service';
+import { TicketBookingComponent } from '../ticket-booking/ticket-booking.component';
 
 @Component({
   selector: 'app-movie-list',
@@ -9,7 +11,7 @@ import { BookingService } from '../services/booking.service';
 export class MovieListComponent {
   getAllTheaterList: any = [];
 
-  constructor(private bookingService:BookingService){
+  constructor(private bookingService:BookingService,private modalService: NgbModal){
 
   }
 
@@ -24,21 +26,10 @@ export class MovieListComponent {
       })
   }
 
-  
-  toggleAccordian(event:any, index:any) {
-    const element = event.target;
-    element.classList.toggle("active");
-    if (this.getAllTheaterList?.theatre[index].isActive) {
-      this.getAllTheaterList.theatre[index].isActive = false;
-    } else {
-      this.getAllTheaterList.theatre[index].isActive = true;
-    }
-    const panel = element.nextElementSibling;
-    if (panel.style.maxHeight) {
-      panel.style.maxHeight = null;
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
-    }
+  bookingSeats(movieName:any,theatre:any){
+    const modalRef = this.modalService.open(TicketBookingComponent,{size: 'xl', backdrop: false, fullscreen: 'xl'});
+    modalRef.componentInstance.movieDetails = this.getAllTheaterList.movies.find((movie:any)=> movie.movie_name == movieName);
+    modalRef.componentInstance.theatreDetails = theatre;
   }
 }
 
