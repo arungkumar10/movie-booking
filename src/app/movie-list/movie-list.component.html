@@ -1,14 +1,83 @@
+<header class="p-3 mb-3 border-bottom bg-title">
+    <div class="container-fluid">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+                <!-- <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg> -->
+                <!-- <img width="40px" height="40px" src="/assets/images/booking-logo.png"> -->
+                <h5 class="text-white">Booking App</h5>
+            </a>
+
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <!-- <li><a href="#" class="nav-link px-2 link-secondary">Overview</a></li>
+          <li><a href="#" class="nav-link px-2 link-dark">Inventory</a></li>
+          <li><a href="#" class="nav-link px-2 link-dark">Customers</a></li>
+          <li><a href="#" class="nav-link px-2 link-dark">Products</a></li> -->
+            </ul>
+
+            <form class="col-12 col-lg-4 mb-3 mb-lg-0 me-lg-3">
+                <input type="search" class="form-control" placeholder="Movie or Theatre Name" aria-label="Search">
+            </form>
+
+            <div class="dropdown text-end">
+                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                </a>
+                <ul class="dropdown-menu text-small bg-title" aria-labelledby="dropdownUser1" style="">
+                    <!-- <li><a class="dropdown-item" href="#">New project...</a></li> -->
+                    <li><a class="dropdown-item text-white" href="#">Settings</a></li>
+                    <li><a class="dropdown-item text-white" href="#">Profile</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item text-white" href="#">Sign out</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
 <main class="p-4">
-    <h4 class="text-color">Movie Tickets Booking</h4>
+    <div class="mb-4 container-fluid">
+        <div class="row">
+            <div class="col-8">
+                <h4 class="text-color">Movies Running in Theatres</h4>
+                <ngb-carousel *ngIf="getAllTheaterList?.movies?.length" [showNavigationArrows]="showNavigationArrows"
+                    [showNavigationIndicators]="showNavigationIndicators">
+                    <ng-template ngbSlide *ngFor="let movie of getAllTheaterList?.movies">
+                        <div class="picsum-img-wrapper">
+                            <img width="100" height="350" [src]="movie?.thumbnail_url" alt="Random slide">
+                        </div>
+                        <div class="carousel-caption">
+                            <h3>{{movie?.movie_name}}</h3>
+                        </div>
+                    </ng-template>
+                </ngb-carousel>
+            </div>
+            <div class="col-4">
+                <h4 class="text-color">Recommended Movies</h4>
+                <ngb-carousel *ngIf="getAllTheaterList?.movies?.length" [animation]="false" [showNavigationArrows]="true"
+                    [showNavigationIndicators]="showNavigationIndicators">
+                    <ng-template ngbSlide *ngFor="let movie of recommendedMovies(getAllTheaterList?.movies)">
+                        <div class="picsum-img-wrapper">
+                            <img width="100" height="350" [src]="movie?.thumbnail_url" alt="Random slide">
+                        </div>
+                    </ng-template>
+                </ngb-carousel>
+            </div>
+        </div>
+    </div>
+    <h4 class="text-color">Book the Shows Now >></h4>
     <div class="row mt-4 ">
         <div *ngFor="let theatre of getAllTheaterList?.theatre;let i = index;" class="col-sm-6 mb-4">
             <div class="card card-height">
                 <div class="card-header">
-                    <span>{{theatre.theatre_name}}</span> <span class="float-end rating"><img class="me-1 py-auto" height="13px" width="13px" src="assets/images/rating-icon.png">{{theatre.customer_rating}}</span>                    
+                    <span>{{theatre.theatre_name}}</span> <span class="float-end rating"><img class="me-1 py-auto"
+                            height="13px" width="13px"
+                            src="assets/images/rating-icon.png">{{theatre.customer_rating}}</span>
                 </div>
                 <div class="card-body">
                     <div class="theatre-address">
-                    <small>#{{theatre.address}}</small>
+                        <small>#{{theatre.address}}</small>
                     </div>
                     <hr>
                     <div class="row mb-2 align-items-center p-0 m-0 movie">
@@ -19,7 +88,8 @@
                             {{theatre.show1_time}}
                         </div>
                         <div class="col-4">
-                            <button (click)="bookingSeats(theatre?.show1_movie,theatre)" class="btn btn-primary float-end">Book Now</button>
+                            <button (click)="bookingSeats(theatre?.show1_movie,theatre.theatre_name,theatre.show1_time)"
+                                class="btn btn-primary float-end">Book Now</button>
                         </div>
                     </div>
                     <div class="row mb-2 align-items-center p-0 m-0 movie">
@@ -30,7 +100,8 @@
                             {{theatre.show2_time}}
                         </div>
                         <div class="col-4">
-                            <button (click)="bookingSeats(theatre?.show2_movie,theatre)" class="btn btn-primary float-end">Book Now</button>
+                            <button (click)="bookingSeats(theatre?.show2_movie,theatre.theatre_name,theatre.show1_time)"
+                                class="btn btn-primary float-end">Book Now</button>
                         </div>
                     </div>
                     <div class="row mb-2 align-items-center p-0 m-0 movie">
@@ -41,14 +112,15 @@
                             {{theatre.show3_time}}
                         </div>
                         <div class="col-4">
-                            <button (click)="bookingSeats(theatre?.show3_movie,theatre)" class="btn btn-primary float-end">Book Now</button>
+                            <button (click)="bookingSeats(theatre?.show3_movie,theatre.theatre_name,theatre.show1_time)"
+                                class="btn btn-primary float-end">Book Now</button>
                         </div>
                     </div>
                 </div>
-              </div>
+            </div>
         </div>
     </div>
     <ng-content></ng-content>
 
-     
+
 </main>

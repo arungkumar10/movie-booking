@@ -20,14 +20,77 @@ $font-size: 13px;
     font-size: $font-size;
 }
 
+
 .btn-primary:hover{
     background-color: rgb(57 68 110)!Important;
+    color: #ffffff;
 }
 
 .movie{
     font-size: $font-size;
 }
 
+
+.seats{
+    cursor: pointer;
+}
+
 .btn-check:focus+.btn-primary, .btn-primary:focus{
     color: $color;
+}
+
+.card{
+    transition: all 0.2s ease;
+}
+
+
+.card:hover{
+    box-shadow: 5px 6px 6px 2px #e9ecef;
+    // transform: scale(1.1);
+}
+
+.seatNumber{
+    border: 1px solid $color;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.seat-selected {
+    background-color: rgb(57, 68, 110);
+}
+
+.seatAvailable{
+    background: url("./assets/images/available.png") no-repeat;
+}
+
+.seatUnAvailable{
+    background: url("./assets/images/taken.png") no-repeat;
+}
+
+.seatSelected{
+    background: url("./assets/images/selected.png") no-repeat;
+}
+
+.seatRowName{
+    border-right: 1px solid $color;
+    width: 8px;
+}
+
+
+.book-now{
+    background-color: $color;
+    color: #ffffff;
+    outline: none;
+    padding: 8px 14px;
+    border-radius: 20px;
+}
+
+.book-now:hover{
+    background-color: $color;
+    color: #ffffff;
+}
+
+.bg-title{
+    background-color: $color;
+    color: #ffffff;
 }

@@ -1,15 +1,41 @@
-<!-- <div>
-        {{movieDetails?.movie_name}}
-        <small>{{theatre?.theatre_name}}</small>
-</div> -->
-<div class="modal-dialog modal-fullscreen-sm-down">
-<div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Simple modal</h4>
-    <button type="button" class="close" aria-label="Close" >
+<div class="modal-header bg-title">
+  <h4 class="modal-title movie-title" id="modal-basic-title">
+    {{movieDetails?.movie_name}} | <span>{{showTime}}</span><br>
+    <small class="theatre-name">{{theatreName}}</small> | <small class="theatre-name">IMDB: {{movieDetails?.imdb_rating}}</small>
+  </h4>
+  <div>Selected Tickets: {{bookedSeats.length}}</div>
+  <!-- <button type="button" class="close" aria-label="Close" >
       <span aria-hidden="true">&times;</span>
-    </button>
+    </button> -->
+</div>
+<div class="modal-body">
+  <h6 class="mb-2">Rs.100</h6>
+  <div class="row">
+    <div class="col-12">
+      <div class="mb-4 ms-5 ps-5" *ngFor="let seat of totalSeats">
+        <span class="pe-2 me-2 seatRowName w-25">{{seat.seatRowName}}</span>
+        <span (click)="seatSelection(seatNumber)" *ngFor="let seatNumber of seat.seats" class="p-2 m-2 m2-0 seats"
+          [ngClass]="{'seatAvailable': (seatNumber.seat_available && seatNumber.seat_status == 1), 'seatSelected': seatNumber.seat_status == 2, 'seatUnAvailable': seatNumber.seat_status == 3 }">
+          <!-- [ngClass]="{'seatNumber': seatNumber.seat_available == true}" -->
+          <span class="m-2" *ngIf="seatNumber.seat_available"></span>
+        </span>
+      </div>
+      <div class="border-top border-bottom border-left border-right my-2 ms-5 ps-5">
+        <p class="text-center pt-2">Screen This Way</p>
+      </div>
+    </div>
   </div>
-  <div class="modal-body">
-    <button type="submit" class="btn btn-primary w-100">Pass back</button>
+  <div>
+
   </div>
-  </div>
+</div>
+<!-- <div class="row"> -->
+  <div class="row p-3 border-top align-items-center">
+    <div class="col-1"></div>
+    <div class="col-7">
+          <div *ngIf="bookedSeats.length">Booked Seats: <span class="me-2 border p-2" *ngFor="let seat of bookedSeats">{{seat}}</span></div>
+    </div>
+    <div class="col-4 text-end">
+      <button (click)="createBookingSeats()" class="btn btn-fill book-now">Book Now</button>
+    </div>
+</div>
