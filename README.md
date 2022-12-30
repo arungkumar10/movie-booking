@@ -1,6 +1,8 @@
 # MovieBooking
 I have developed this application task with Angular Framework and please find the below runnable commands.
 
+Note: For new booking seats endpoint have CORS error; please accept this localhost from your endpoint configuration side.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.4.
 
 ## Development server
