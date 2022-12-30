@@ -13,6 +13,7 @@ export class TicketBookingComponent {
   @Input() theatreName: any;
   @Input() showTime: any;
   totalSeats: any = [];
+  unSeatsColumns: any = [];
 
   constructor(private bookingService: BookingService) { }
 
@@ -31,25 +32,29 @@ export class TicketBookingComponent {
     }
     // Create new seats
     this.bookingService.bookMovieSeats(payLoad).subscribe((getBookingSeatsResponse) => {
-
+      const toastTrigger = document.getElementById('successMessage');
+      if (toastTrigger) {
+        toastTrigger.addEventListener('click', () => {
+        })
+      }
     })
   }
 
   seatSelection(seat: any) {
-      if (seat.seat_status == 1 && this.bookedSeats.length <= 10) {
-        seat.seat_status = 2;
-        this.bookedSeats.push(seat.seat_arrangement_no);
-      } else if (seat.seat_status == 2) {
-        seat.seat_status = 1;
-        this.bookedSeats.splice(this.bookedSeats.findIndex((seats: any) => seats.seat_arrangement_no == seat.seat_arrangement_no), 1);
-      }
+    if (seat.seat_status == 1 && this.bookedSeats.length <= 10 && seat.seat_available && this.checkUnSeat(seat)) {
+      seat.seat_status = 2;
+      this.bookedSeats.push(seat.seat_arrangement_no);
+    } else if (seat.seat_status == 2 && seat.seat_available && this.checkUnSeat(seat)) {
+      seat.seat_status = 1;
+      this.bookedSeats.splice(this.bookedSeats.findIndex((seats: any) => seats.seat_arrangement_no == seat.seat_arrangement_no), 1);
+    }
   }
 
   seatArrangement() {
-    let noOfRows: any = ['A', 'B', 'C', 'D', 'E', 'F','G'];
+    let noOfRows: any = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
     let totalSeatColumns: any = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
     let seatsAlreadyBooked: any = ['B13', 'B14'];
-    let unSeatsColumns:any = ['G1','G2',];
+    this.unSeatsColumns = ['G1', 'G2', 'G15', 'G16', 'G17'];
     noOfRows.forEach((rows: any, rowIndex: any) => {
       let tempTotalSeatColumn: any = [];
       let seatingFrequency: number = 0;
@@ -89,6 +94,11 @@ export class TicketBookingComponent {
     })
 
   }
+
+  checkUnSeat(seat: any) {
+    return this.unSeatsColumns.findIndex((x: any) => x == seat?.seat_arrangement_no) == -1;
+  }
+
 
 }
 

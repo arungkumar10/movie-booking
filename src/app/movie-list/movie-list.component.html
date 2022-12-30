@@ -40,7 +40,7 @@
     <div class="mb-4 container-fluid">
         <div class="row">
             <div class="col-8">
-                <h4 class="text-color">Movies Running in Theatres</h4>
+                <h4 class="text-color">View Shows in Theatres</h4>
                 <ngb-carousel *ngIf="getAllTheaterList?.movies?.length" [showNavigationArrows]="showNavigationArrows"
                     [showNavigationIndicators]="showNavigationIndicators">
                     <ng-template ngbSlide *ngFor="let movie of getAllTheaterList?.movies">
@@ -113,7 +113,7 @@
                         </div>
                         <div class="col-4">
                             <button (click)="bookingSeats(theatre?.show3_movie,theatre.theatre_name,theatre.show1_time)"
-                                class="btn btn-primary float-end">Book Now</button>
+                              id="successMessage"  class="btn btn-primary float-end">Book Now</button>
                         </div>
                     </div>
                 </div>
@@ -124,3 +124,17 @@
 
 
 </main>
+
+
+
+<div class="toast-container position-fixed start-0 end-0 p-3">
+    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <strong class="me-auto">Booking App</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+            Your tickets booked successfully.
+      </div>
+    </div>
+  </div>

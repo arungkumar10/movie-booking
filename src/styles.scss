@@ -2,17 +2,17 @@
 $color: rgb(57 68 110);
 $font-size: 13px;
 
-.card-header{
+.card-header {
     background-color: $color;
     color: white;
 }
 
-.text-color{
+.text-color {
     color: $color;
 }
 
-.btn-primary{
-    background-color: white!Important;
+.btn-primary {
+    background-color: white !Important;
     border: 1px solid $color;
     border-radius: 8px;
     padding: 5px 13px;
@@ -21,35 +21,31 @@ $font-size: 13px;
 }
 
 
-.btn-primary:hover{
-    background-color: rgb(57 68 110)!Important;
+.btn-primary:hover {
+    background-color: rgb(57 68 110) !Important;
     color: #ffffff;
 }
 
-.movie{
+.movie {
     font-size: $font-size;
 }
 
-
-.seats{
-    cursor: pointer;
-}
-
-.btn-check:focus+.btn-primary, .btn-primary:focus{
+.btn-check:focus+.btn-primary,
+.btn-primary:focus {
     color: $color;
 }
 
-.card{
+.card {
     transition: all 0.2s ease;
 }
 
 
-.card:hover{
+.card:hover {
     box-shadow: 5px 6px 6px 2px #e9ecef;
     // transform: scale(1.1);
 }
 
-.seatNumber{
+.seatNumber {
     border: 1px solid $color;
     border-radius: 5px;
     cursor: pointer;
@@ -59,25 +55,28 @@ $font-size: 13px;
     background-color: rgb(57, 68, 110);
 }
 
-.seatAvailable{
+.seatAvailable {
     background: url("./assets/images/available.png") no-repeat;
+    cursor: pointer;
 }
 
-.seatUnAvailable{
+.seatUnAvailable {
     background: url("./assets/images/taken.png") no-repeat;
+    cursor: pointer;
 }
 
-.seatSelected{
+.seatSelected {
     background: url("./assets/images/selected.png") no-repeat;
+    cursor: pointer;
 }
 
-.seatRowName{
+.seatRowName {
     border-right: 1px solid $color;
     width: 8px;
 }
 
 
-.book-now{
+.book-now {
     background-color: $color;
     color: #ffffff;
     outline: none;
@@ -85,12 +84,16 @@ $font-size: 13px;
     border-radius: 20px;
 }
 
-.book-now:hover{
+.book-now:hover {
     background-color: $color;
     color: #ffffff;
 }
 
-.bg-title{
+.bg-title {
     background-color: $color;
     color: #ffffff;
+}
+
+.screen {
+    border-radius: 0px 0px 76px 78px;
 }
