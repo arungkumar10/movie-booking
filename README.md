@@ -1,7 +1,7 @@
 # MovieBooking
 I have developed this application task with Angular Framework and please find the below runnable commands.
 
-Note: For new booking seat endpoint have CORS error; please accept this `http://localhost:4200/` from your endpoint configuration side.
+Note: For new booking seat endpoint have CORS error; please accept this `http://localhost:4200/` from respective endpoint configuration.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.4.
 
