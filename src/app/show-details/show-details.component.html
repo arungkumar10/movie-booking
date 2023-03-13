@@ -39,114 +39,65 @@
 <main class="p-4">
     <div class="mb-4 container-fluid">
         <div class="row">
-            <div class="col-8">
-                <h4 class="text-color">View Shows in Theatres</h4>
-                <ngb-carousel *ngIf="getAllTheaterList?.movies?.length" [showNavigationArrows]="showNavigationArrows"
-                    [showNavigationIndicators]="showNavigationIndicators">
-                    <ng-template ngbSlide *ngFor="let movie of getAllTheaterList?.movies">
-                        <div class="picsum-img-wrapper">
-                            <img width="100" height="350" [src]="movie?.thumbnail_url" alt="Random slide">
-                        </div>
-                        <div class="carousel-caption">
-                            <h3>{{movie?.movie_name}}</h3>
-                        </div>
-                    </ng-template>
-                </ngb-carousel>
-            </div>
-            <div class="col-4">
-                <h4 class="text-color">Recommended Movies</h4>
-                <ngb-carousel *ngIf="getAllTheaterList?.movies?.length" [animation]="false" [showNavigationArrows]="true"
-                    [showNavigationIndicators]="showNavigationIndicators">
-                    <ng-template ngbSlide *ngFor="let movie of recommendedMovies(getAllTheaterList?.movies)">
-                        <div class="picsum-img-wrapper">
-                            <img width="100" height="350" [src]="movie?.thumbnail_url" alt="Random slide">
-                        </div>
-                    </ng-template>
-                </ngb-carousel>
-            </div>
-        </div>
-    </div>
-    <h4 class="text-color">Book the Shows Now >></h4>
-    <div class="row mt-4 ">
-        <div *ngFor="let theatre of getAllTheaterList?.theatre;let i = index;" class="col-sm-6 mb-4">
-            <div (click)="navigateToShowDetails(theatre)" class="card card-height">
-                <div class="card-header">
-                    <span>{{theatre.theatre_name}}</span> <span class="float-end rating"><img class="me-1 py-auto"
-                            height="13px" width="13px"
-                            src="assets/images/rating-icon.png">{{theatre.customer_rating}}</span>
+            <div class="col-12">
+                <div class="mb-1">
+                    <img [src]="currentSelectedTheatreDetails[0]?.thumbnail_url" width="100%" height="280px">
                 </div>
-                <div class="card-body">
-                    <div class="theatre-address">
-                        <small>#{{theatre.address}}</small>
-                    </div>
-                    <hr>
-                    <!-- <div class="row mb-2 align-items-center p-0 m-0 movie">
+                <div class="theatre-address mb-4">
+                    <small>#{{currentSelectedTheatreDetails[0]?.address}}</small>
+                </div>
+                <h4 class="text-color">{{theatreName}} - Show Details >></h4>
+                <div *ngFor="let show of currentSelectedTheatreDetails" class="card col-sm-12 mb-4 p-4">
+                    <div class="row mb-2 align-items-center p-0 m-0 movie">
                         <div class="col-5 text-color">
-                            <strong>{{theatre.show1_movie}}</strong>
+                            <strong>{{show.show1_movie}}</strong>
                         </div>
                         <div class="col-3 text-color">
-                            {{theatre.show1_time}}
+                            {{show.show1_time}}
                         </div>
                         <div class="col-4">
-                            <button (click)="bookingSeats(theatre?.show1_movie,theatre.theatre_name,theatre.show1_time)"
+                            <button (click)="bookingSeats(show?.show1_movie,show.theatre_name,show.show1_time)"
                                 class="btn btn-primary float-end">Book Now</button>
                         </div>
                     </div>
                     <div class="row mb-2 align-items-center p-0 m-0 movie">
                         <div class="col-5 text-color">
-                            <strong>{{theatre.show2_movie}}</strong>
+                            <strong>{{show.show2_movie}}</strong>
                         </div>
                         <div class="col-3 text-color">
-                            {{theatre.show2_time}}
+                            {{show.show2_time}}
                         </div>
                         <div class="col-4">
-                            <button (click)="bookingSeats(theatre?.show2_movie,theatre.theatre_name,theatre.show1_time)"
+                            <button (click)="bookingSeats(show?.show2_movie,show.theatre_name,show.show1_time)"
                                 class="btn btn-primary float-end">Book Now</button>
                         </div>
                     </div>
                     <div class="row mb-2 align-items-center p-0 m-0 movie">
                         <div class="col-5 text-color">
-                            <strong>{{theatre.show3_movie}}</strong>
+                            <strong>{{show.show3_movie}}</strong>
                         </div>
                         <div class="col-3 text-color">
-                            {{theatre.show3_time}}
+                            {{show.show3_time}}
                         </div>
                         <div class="col-4">
-                            <button (click)="bookingSeats(theatre?.show3_movie,theatre.theatre_name,theatre.show1_time)"
+                            <button (click)="bookingSeats(show?.show3_movie,show.theatre_name,show.show1_time)"
                               id="successMessage"  class="btn btn-primary float-end">Book Now</button>
                         </div>
                     </div>
                     <div class="row mb-2 align-items-center p-0 m-0 movie">
                         <div class="col-5 text-color">
-                            <strong>{{theatre.show4_movie}}</strong>
+                            <strong>{{show.show4_movie}}</strong>
                         </div>
                         <div class="col-3 text-color">
-                            {{theatre.show4_time}}
+                            {{show.show4_time}}
                         </div>
                         <div class="col-4">
-                            <button (click)="bookingSeats(theatre?.show4_movie,theatre.theatre_name,theatre.show1_time)"
+                            <button (click)="bookingSeats(show?.show4_movie,show.theatre_name,show.show1_time)"
                               id="successMessage"  class="btn btn-primary float-end">Book Now</button>
                         </div>
-                    </div> -->
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <ng-content></ng-content>
-
-
 </main>
-
-
-
-<div *ngIf="showSuccessMessage == 'true'" class="toast-container position-fixed start-0 end-0 p-3">
-    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-      <div class="toast-header">
-        <strong class="me-auto">Booking App</strong>
-        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-      </div>
-      <div class="toast-body">
-            Your tickets booked successfully.
-      </div>
-    </div>
-  </div>

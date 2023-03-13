@@ -9,12 +9,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { ShowDetailsComponent } from './show-details/show-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MovieListComponent,
-    TicketBookingComponent
+    TicketBookingComponent,
+    ShowDetailsComponent
   ],
   imports: [
     BrowserModule,

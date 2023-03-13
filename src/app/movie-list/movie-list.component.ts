@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbCarouselConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BookingService } from '../services/booking.service';
 import { TicketBookingComponent } from '../ticket-booking/ticket-booking.component';
@@ -12,10 +13,14 @@ export class MovieListComponent {
     getAllTheaterList: any = [];
     showNavigationArrows = false;
     showNavigationIndicators = false;
+    showSuccessMessage: any = false;
 
-    constructor(private bookingService: BookingService, private modalService: NgbModal, private config: NgbCarouselConfig) { }
+    constructor(private bookingService: BookingService, private modalService: NgbModal, private config: NgbCarouselConfig, private route: ActivatedRoute, private router: Router) { }
 
     ngOnInit() {
+        this.route.queryParams.subscribe((values: any) => {
+            this.showSuccessMessage = values.showSuccessMessage;
+        })
         this.config.animation = true;
         this.config.interval = 4000;
         let payLoad: any = {
@@ -42,5 +47,9 @@ export class MovieListComponent {
 
     recommendedMovies(moviesList: any) {
         return moviesList.reverse();
+    }
+
+    navigateToShowDetails(theatre: any) {
+        this.router.navigate(['/show-deails/' + theatre.theatre_name]);
     }
 }

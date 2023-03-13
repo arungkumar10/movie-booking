@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BookingService } from '../services/booking.service';
 
 @Component({
@@ -15,7 +17,7 @@ export class TicketBookingComponent {
   totalSeats: any = [];
   unSeatsColumns: any = [];
 
-  constructor(private bookingService: BookingService) { }
+  constructor(private bookingService: BookingService,private router:Router,private modalService: NgbModal) { }
 
   ngOnInit() {
     this.seatArrangement();
@@ -32,12 +34,15 @@ export class TicketBookingComponent {
     }
     // Create new seats
     this.bookingService.bookMovieSeats(payLoad).subscribe((getBookingSeatsResponse) => {
+      this.router.navigate(['/'],{ queryParams: { showSuccessMessage: true}});
       const toastTrigger = document.getElementById('successMessage');
       if (toastTrigger) {
         toastTrigger.addEventListener('click', () => {
         })
       }
+      this.modalService.dismissAll();
     })
+
   }
 
   seatSelection(seat: any) {

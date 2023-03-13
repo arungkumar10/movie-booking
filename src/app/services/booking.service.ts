@@ -9,7 +9,7 @@ export class BookingService {
   constructor(private http:HttpClient) { }
 
   getAllMovieList(payLoad:any){
-    return this.http.post(MOVIE_LIST_URL,'');
+    return this.http.post(MOVIE_LIST_URL,payLoad);
   }
 
   bookMovieSeats(bookingDetails:any){
