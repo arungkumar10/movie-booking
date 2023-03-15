@@ -10,13 +10,15 @@ import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ShowDetailsComponent } from './show-details/show-details.component';
+import { BookingComponent } from './booking/booking.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MovieListComponent,
     TicketBookingComponent,
-    ShowDetailsComponent
+    ShowDetailsComponent,
+    BookingComponent
   ],
   imports: [
     BrowserModule,

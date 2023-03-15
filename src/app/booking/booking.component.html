@@ -1,0 +1,75 @@
+<header class="p-3 mb-3 border-bottom bg-title">
+    <div class="container-fluid">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+                <!-- <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg> -->
+                <!-- <img width="40px" height="40px" src="/assets/images/booking-logo.png"> -->
+                <h5 class="text-white">Booking App</h5>
+            </a>
+
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <!-- <li><a href="#" class="nav-link px-2 link-secondary">Overview</a></li>
+          <li><a href="#" class="nav-link px-2 link-dark">Inventory</a></li>
+          <li><a href="#" class="nav-link px-2 link-dark">Customers</a></li>
+          <li><a href="#" class="nav-link px-2 link-dark">Products</a></li> -->
+            </ul>
+
+            <form class="col-12 col-lg-4 mb-3 mb-lg-0 me-lg-3">
+                <input type="search" class="form-control" placeholder="Movie or Theatre Name" aria-label="Search">
+            </form>
+
+            <div class="dropdown text-end">
+                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                </a>
+                <ul class="dropdown-menu text-small bg-title" aria-labelledby="dropdownUser1" style="">
+                    <!-- <li><a class="dropdown-item" href="#">New project...</a></li> -->
+                    <li><a class="dropdown-item text-white" href="#">Settings</a></li>
+                    <li><a class="dropdown-item text-white" href="#">Profile</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item text-white" href="#">Sign out</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+<main class="p-4">
+    <div class="mb-4 container-fluid">
+                <div class="row">
+                    <div class="col-9 border-right">
+                        <h6 class="mb-4 text-center">Rs.100</h6>
+                        <div class="mb-4 ms-1 ps-3" *ngFor="let seat of totalSeats">
+                            <span class="pe-2 me-2 seatRowName w-25">{{seat.seatRowName}}</span>
+                            <span (click)="seatSelection(seatNumber)" *ngFor="let seatNumber of seat.seats"
+                                class="p-2 m-2 m2-0 seats"
+                                [ngClass]="{'seatAvailable': (seatNumber.seat_available && seatNumber.seat_status == 1 && checkUnSeat(seatNumber)), 'seatSelected': seatNumber.seat_status == 2, 'seatUnAvailable': seatNumber.seat_status == 3 }">
+                                <!-- [ngClass]="{'seatNumber': seatNumber.seat_available == true}" -->
+                                <span class="m-2" *ngIf="seatNumber.seat_available"></span>
+                            </span>
+                        </div>
+                        <div class="border-bottom screen my-2 ms-5 ps-5">
+                            <p class="text-center pt-2">Screen</p>
+                        </div>
+                    </div>
+                <div class="col-3">
+                    <h4>{{movieName}}</h4>
+                    <hr>
+                    <p class="light-text">THEATRES</p>
+                    <p>{{theatreName}}</p>
+                    <p class="light-text">SHOWTIME</p>
+                    <p>{{dateFormat(showDate)}}</p>
+                    <hr>
+                    <div *ngIf="bookedSeats.length">
+                        <ul><li class="border li-bookingseat mb-2" *ngFor="let seat of bookedSeats">{{seat}}</li></ul>
+                    </div>
+
+                    <div>
+                        <button class="btn btn-primary">Book Now</button>
+                    </div>
+                </div>
+        </div>
+    </div>
+</main>

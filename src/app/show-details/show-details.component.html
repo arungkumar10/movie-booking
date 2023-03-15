@@ -46,8 +46,13 @@
                 <div class="theatre-address mb-4">
                     <small>#{{currentSelectedTheatreDetails[0]?.address}}</small>
                 </div>
-                <h4 class="text-color">{{theatreName}} - Show Details >></h4>
-                <div *ngFor="let show of currentSelectedTheatreDetails" class="card col-sm-12 mb-4 p-4">
+                <div class="card border-0">
+                    <ul class="showDate border-0 border-bottom-0">
+                        <li class="mx-4" *ngFor="let date of showAvailableDates;let i=index;" (click)="selectedDate(date,i)"><a class="a-date border-0" [ngClass]="{'active-date': date.active}"><span class="day text-center">{{date.day}}</span><br><span class="date text-center px-1" [ngClass]="{'active-border': date.active}">{{date.date}}</span></a></li>
+                    </ul>
+                </div>
+                <h4 class="text-color my-4 border-top">{{theatreName}} - Show Details >></h4>
+                <div *ngFor="let show of currentSelectedTheatreDetails;let i=index;" class="card col-sm-12 mb-4 p-4">
                     <div class="row mb-2 align-items-center p-0 m-0 movie">
                         <div class="col-5 text-color">
                             <strong>{{show.show1_movie}}</strong>
@@ -56,8 +61,8 @@
                             {{show.show1_time}}
                         </div>
                         <div class="col-4">
-                            <button (click)="bookingSeats(show?.show1_movie,show.theatre_name,show.show1_time)"
-                                class="btn btn-primary float-end">Book Now</button>
+                            <button (click)="bookingSeats(show?.show1_movie,show.theatre_name,show.show1_time,1)"
+                                class="btn btn-primary float-end">Continue</button>
                         </div>
                     </div>
                     <div class="row mb-2 align-items-center p-0 m-0 movie">
@@ -68,8 +73,8 @@
                             {{show.show2_time}}
                         </div>
                         <div class="col-4">
-                            <button (click)="bookingSeats(show?.show2_movie,show.theatre_name,show.show1_time)"
-                                class="btn btn-primary float-end">Book Now</button>
+                            <button (click)="bookingSeats(show?.show2_movie,show.theatre_name,show.show1_time,2)"
+                                class="btn btn-primary float-end">Continue</button>
                         </div>
                     </div>
                     <div class="row mb-2 align-items-center p-0 m-0 movie">
@@ -80,8 +85,8 @@
                             {{show.show3_time}}
                         </div>
                         <div class="col-4">
-                            <button (click)="bookingSeats(show?.show3_movie,show.theatre_name,show.show1_time)"
-                              id="successMessage"  class="btn btn-primary float-end">Book Now</button>
+                            <button (click)="bookingSeats(show?.show3_movie,show.theatre_name,show.show1_time,3)"
+                              id="successMessage"  class="btn btn-primary float-end">Continue</button>
                         </div>
                     </div>
                     <div class="row mb-2 align-items-center p-0 m-0 movie">
@@ -92,8 +97,8 @@
                             {{show.show4_time}}
                         </div>
                         <div class="col-4">
-                            <button (click)="bookingSeats(show?.show4_movie,show.theatre_name,show.show1_time)"
-                              id="successMessage"  class="btn btn-primary float-end">Book Now</button>
+                            <button (click)="bookingSeats(show?.show4_movie,show.theatre_name,show.show1_time,4)"
+                              id="successMessage"  class="btn btn-primary float-end">Continue</button>
                         </div>
                     </div>
                 </div>

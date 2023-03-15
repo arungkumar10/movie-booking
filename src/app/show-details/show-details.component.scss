@@ -1,0 +1,33 @@
+.showDate{
+    list-style: none;
+    display: inline-flex;
+}
+
+.day{
+    color: #757575;
+}
+
+.date{
+    color: #757575;
+}
+
+.active-date{
+    .day{
+        color: #ffc107!important;
+    }
+    .date{
+        color: #ffc107!important;
+    }
+}
+
+.active-border{
+    border-bottom: 3px solid #ffc107!important;
+}
+
+a{
+    text-decoration: none!important;
+}
+
+li{
+    cursor: pointer;
+}
