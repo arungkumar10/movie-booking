@@ -5,4 +5,37 @@ li{
 .li-bookingseat{
     width: 50px;
     height: 31px;
+    text-align: center;
+    border-radius: 10%;
+    line-height: 26px;
+}
+
+.btn-primary{
+    padding: 10px 110px;
+    font-size: 17px;
+    background-color: rgb(57 68 110) !Important;
+    color: #ffffff;
+}
+
+btn-primary:hover {
+    background-color: rgb(57 68 110) !Important;
+    color: rgb(57 68 110) !Important;
+}
+
+.light-text{
+    color: #aba2a2;
+}
+
+.btn-outline-primary{
+    color: rgb(57 68 110);
+    border-color: rgb(57 68 110);
+    width: 110px;
+}
+
+.btn-secondary{
+    padding: 9px 123px;
+    font-size: 17px;
+    color: #222222;
+    background: #efeaea;
+    border-color: #efeaea;
 }

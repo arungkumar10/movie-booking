@@ -57,6 +57,7 @@ export class ShowDetailsComponent {
           this.showAvailableDates.push({ day: (setDate.toLocaleString('en-in',{ weekday: 'long'})).substring(0,3).toUpperCase(), date: setDate.getDate(), actualDate: new Date().setDate(date.getDate() + i), active: false})
       }
       this.showAvailableDates[0].active = true;
+      this.userSelectedDate = this.showAvailableDates[0].actualDate;
   }
   
   selectedDate(date:any,index:any){

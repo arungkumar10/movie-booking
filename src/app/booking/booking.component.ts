@@ -19,6 +19,7 @@ export class BookingComponent {
   showDate: any;
   getAllTheaterList: any = [];
   currentSelectedTheatreDetails: any = [];
+  showActualTime: any;
 
   constructor(private bookingService: BookingService, private router: Router, private route: ActivatedRoute) { }
 
@@ -33,10 +34,12 @@ export class BookingComponent {
       let payLoad: any = {
         user_mail_id: "arungkumar.10@gmail.com"
       }
-      
+
       this.bookingService.getAllMovieList(payLoad).subscribe((getTheaterListResponse: any) => {
         this.getAllTheaterList = getTheaterListResponse;
         this.currentSelectedTheatreDetails.push(getTheaterListResponse?.theatre?.find((theatre: any) => theatre.theatre_name == this.theatreName));
+        let showDetails: any = [this.currentSelectedTheatreDetails[0].show1_time, this.currentSelectedTheatreDetails[0].show2_time, this.currentSelectedTheatreDetails[0].show3_time, this.currentSelectedTheatreDetails[0].show4_time];
+        this.showActualTime = showDetails[Number(this.showTime)];
       })
     })
 
@@ -44,24 +47,25 @@ export class BookingComponent {
   }
 
   createBookingSeats() {
-    let payLoad: any = {
-      show_time: this.showTime,
-      movie_name: this.movieDetails.movie_name,
-      theatre_name: this.theatreName,
-      booked_seats: this.bookedSeats,
-      date: new Date(),
-      user_mail_id: this.userMailId
-    }
-    // Create new seats
-    this.bookingService.bookMovieSeats(payLoad).subscribe((getBookingSeatsResponse) => {
-      this.router.navigate(['/'], { queryParams: { showSuccessMessage: true } });
-      const toastTrigger = document.getElementById('successMessage');
-      if (toastTrigger) {
-        toastTrigger.addEventListener('click', () => {
-        })
+    if (this.bookedSeats.length) {
+      let payLoad: any = {
+        show_time: this.showTime,
+        movie_name: this.movieDetails.movie_name,
+        theatre_name: this.theatreName,
+        booked_seats: this.bookedSeats,
+        date: new Date(),
+        user_mail_id: this.userMailId
       }
-    })
-
+      // Create new seats
+      this.bookingService.bookMovieSeats(payLoad).subscribe((getBookingSeatsResponse) => {
+        this.router.navigate(['/'], { queryParams: { showSuccessMessage: true } });
+        const toastTrigger = document.getElementById('successMessage');
+        if (toastTrigger) {
+          toastTrigger.addEventListener('click', () => {
+          })
+        }
+      })
+    }
   }
 
   seatSelection(seat: any) {
@@ -70,7 +74,7 @@ export class BookingComponent {
       this.bookedSeats.push(seat.seat_arrangement_no);
     } else if (seat.seat_status == 2 && seat.seat_available && this.checkUnSeat(seat)) {
       seat.seat_status = 1;
-      this.bookedSeats.splice(this.bookedSeats.findIndex((seats: any) => seats.seat_arrangement_no == seat.seat_arrangement_no), 1);
+      this.bookedSeats.splice(this.bookedSeats.findIndex((seats: any) => seats == seat.seat_arrangement_no), 1);
     }
   }
 
@@ -116,7 +120,6 @@ export class BookingComponent {
         seats: tempTotalSeatColumn
       })
     })
-
   }
 
   checkUnSeat(seat: any) {
@@ -124,6 +127,11 @@ export class BookingComponent {
   }
 
   dateFormat(date: any) {
-    return `${date.toLocaleString('en-in', { weekday: 'long' }).substring(0, 3).toUpperCase()}, ${date.getDate()}  ${date.toLocaleString('en-in', { month: 'long' }).toUpperCase()} `
+    return `${date.toLocaleString('en-in', { weekday: 'long' }).substring(0, 3).toUpperCase()}, ${date.getDate()}  ${date.toLocaleString('en-in', { month: 'long' }).toUpperCase()} - ${this.showActualTime}`
+  }
+
+  
+  navigateTo(){
+      this.router.navigateByUrl('/');
   }
 }
