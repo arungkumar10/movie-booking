@@ -39,7 +39,7 @@ export class BookingComponent {
         this.getAllTheaterList = getTheaterListResponse;
         this.currentSelectedTheatreDetails.push(getTheaterListResponse?.theatre?.find((theatre: any) => theatre.theatre_name == this.theatreName));
         let showDetails: any = [this.currentSelectedTheatreDetails[0].show1_time, this.currentSelectedTheatreDetails[0].show2_time, this.currentSelectedTheatreDetails[0].show3_time, this.currentSelectedTheatreDetails[0].show4_time];
-        this.showActualTime = showDetails[Number(this.showTime)];
+        this.showActualTime = showDetails[Number(this.showTime) - 1];
       })
     })
 
