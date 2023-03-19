@@ -57,7 +57,7 @@ export class ShowDetailsComponent {
       this.userSelectedDate = this.showAvailableDates[0].actualDate;
   }
   
-  // show date picker function
+  // displaying movie booking date picker function
   selectedDate(date:any,index:any){
     this.userSelectedDate = date.actualDate;
     this.showAvailableDates.forEach((date:any)=> date.active = false);
