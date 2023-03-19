@@ -130,8 +130,8 @@ export class BookingComponent {
     return `${date.toLocaleString('en-in', { weekday: 'long' }).substring(0, 3).toUpperCase()}, ${date.getDate()}  ${date.toLocaleString('en-in', { month: 'long' }).toUpperCase()} - ${this.showActualTime}`
   }
 
-  
-  navigateTo(){
-      this.router.navigateByUrl('/');
+
+  navigateTo() {
+    this.router.navigateByUrl('/');
   }
 }

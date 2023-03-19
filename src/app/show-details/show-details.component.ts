@@ -40,15 +40,12 @@ export class ShowDetailsComponent {
     this.showCalendar();
   }
 
+  // new tickets booking function
   bookingSeats(movieName: any, theatreName: any, showTime: any,i:any) {
-    // Modal open for booking seats
-    // const modalRef = this.modalService.open(TicketBookingComponent, { size: 'xl', backdrop: false });
-    // modalRef.componentInstance.movieDetails = this.getAllTheaterList.movies.find((movie: any) => movie.movie_name == movieName);
-    // modalRef.componentInstance.theatreName = theatreName;
-    // modalRef.componentInstance.showTime = showTime;
     this.router.navigateByUrl(`/booking/${movieName}/${theatreName}/${i}/${this.userSelectedDate}`)
   }
 
+  // displaying available dates to book the tickets
   showCalendar(){
       let date:any = new Date();
       let numberOfDaysToAdd = 8;
@@ -60,6 +57,7 @@ export class ShowDetailsComponent {
       this.userSelectedDate = this.showAvailableDates[0].actualDate;
   }
   
+  // show date picker function
   selectedDate(date:any,index:any){
     this.userSelectedDate = date.actualDate;
     this.showAvailableDates.forEach((date:any)=> date.active = false);

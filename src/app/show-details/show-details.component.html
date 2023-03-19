@@ -2,16 +2,12 @@
     <div class="container-fluid">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
             <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
-                <!-- <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg> -->
                 <!-- <img width="40px" height="40px" src="/assets/images/booking-logo.png"> -->
                 <h5 class="text-white">Booking App</h5>
             </a>
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <!-- <li><a href="#" class="nav-link px-2 link-secondary">Overview</a></li>
-          <li><a href="#" class="nav-link px-2 link-dark">Inventory</a></li>
-          <li><a href="#" class="nav-link px-2 link-dark">Customers</a></li>
-          <li><a href="#" class="nav-link px-2 link-dark">Products</a></li> -->
+                <!-- <li><a href="#" class="nav-link px-2 link-secondary">Overview</a></li>-->
             </ul>
 
             <form class="col-12 col-lg-4 mb-3 mb-lg-0 me-lg-3">
@@ -40,14 +36,18 @@
         <div class="row">
             <div class="col-12">
                 <div class="mb-1">
-                    <img [src]="currentSelectedTheatreDetails[0]?.thumbnail_url" width="100%" height="280px">
+                    <img [src]="currentSelectedTheatreDetails[0]?.thumbnail_url" [alt]="'Theatre picture'" width="100%" height="280px">
                 </div>
                 <div class="theatre-address mb-4 py-2 border-bottom">
                     <small>#{{currentSelectedTheatreDetails[0]?.address}}.</small>
                 </div>
                 <div class="border-0">
                     <ul class="showDate border-0 p-0 mb-2">
-                        <li class="mx-4" *ngFor="let date of showAvailableDates;let i=index;" (click)="selectedDate(date,i)"><a class="a-date border-0" [ngClass]="{'active-date': date.active}"><span class="day text-center">{{date.day}}</span><br><span class="date text-center px-1" [ngClass]="{'active-border': date.active}">{{date.date}}</span></a></li>
+                        <li class="mx-4" *ngFor="let date of showAvailableDates;let i=index;"
+                            (click)="selectedDate(date,i)"><a class="a-date border-0"
+                                [ngClass]="{'active-date': date.active}"><span
+                                    class="day text-center">{{date.day}}</span><br><span class="date text-center px-1"
+                                    [ngClass]="{'active-border': date.active}">{{date.date}}</span></a></li>
                     </ul>
                 </div>
                 <h4 class="text-color my-4 border-top pt-3">{{theatreName}} - Show Details >></h4>
@@ -96,7 +96,7 @@
                         </div>
                         <div class="col-4">
                             <button (click)="bookingSeats(show?.show3_movie,show.theatre_name,show.show1_time,3)"
-                              id="successMessage"  class="btn btn-primary float-end">Continue</button>
+                                id="successMessage" class="btn btn-primary float-end">Continue</button>
                         </div>
                     </div>
                     <div class="row mb-2 align-items-center p-0 m-0 movie">
@@ -108,7 +108,7 @@
                         </div>
                         <div class="col-4">
                             <button (click)="bookingSeats(show?.show4_movie,show.theatre_name,show.show1_time,4)"
-                              id="successMessage"  class="btn btn-primary float-end">Continue</button>
+                                id="successMessage" class="btn btn-primary float-end">Continue</button>
                         </div>
                     </div>
                 </div>
